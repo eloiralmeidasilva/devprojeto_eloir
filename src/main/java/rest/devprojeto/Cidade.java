@@ -2,10 +2,8 @@
 package rest.devprojeto;
 
 import br.alerario.ICidade;
-import br.alerario.ICliente;
 
-
-public class Cliente implements ICliente, java.io.Serializable{
+public class Cidade implements ICidade, java.io.Serializable{
 
     @Override
     public int getCodigo() {
@@ -27,16 +25,7 @@ public class Cliente implements ICliente, java.io.Serializable{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public ICidade getCidade() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void setCidade(ICidade ic) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     
-        
+    
+    
 }
