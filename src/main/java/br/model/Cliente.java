@@ -2,9 +2,10 @@
 package br.model;
 
 import br.alerario.ICidade;
+import javax.xml.bind.annotation.XmlRootElement;
 //import br.alerario.ICliente;
 
-
+@XmlRootElement(name="Cliente")
 public class Cliente implements java.io.Serializable{
     
     private int codigo;
