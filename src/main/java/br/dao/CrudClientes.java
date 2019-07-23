@@ -14,12 +14,12 @@ public class CrudClientes {
         clientes.add(cliente);
     }
     
-    public ArrayList<Cliente> listar(){
+    public static ArrayList<Cliente> listar(){
     
         return clientes;
     }
 
-    public void editar(Cliente cliente){
+    public static void editar(Cliente cliente){
         for(int i = 0; i < clientes.size(); i++){
             if(cliente.getCodigo() == clientes.get(i).getCodigo()){
                 clientes.set(i, cliente);
@@ -29,7 +29,7 @@ public class CrudClientes {
     }
 
     
-    public void delete(int codigo){
+    public static void delete(int codigo){
         for(int i = 0; i < clientes.size(); i++){
             if(codigo == clientes.get(i).getCodigo()){
                 clientes.remove(i);
