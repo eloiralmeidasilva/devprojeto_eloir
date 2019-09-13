@@ -1,7 +1,7 @@
 
 package br.model;
 
-//import br.alerario.ICidade;
+import br.alerario.ICidade;
 
 public class Cidade implements java.io.Serializable{
 
@@ -18,18 +18,12 @@ public class Cidade implements java.io.Serializable{
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-
     
     public String getNome() {
         return nome;
     }
-
     
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    
-    
-    
 }

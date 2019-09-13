@@ -9,9 +9,15 @@ public class CrudClientes {
     
     public static ArrayList<Cliente> clientes;
 
+    public CrudClientes(){
+        
+        clientes = new ArrayList<Cliente>();
+    }
     
     public void insereCliente(Cliente cliente){
+        
         clientes.add(cliente);
+                
     }
     
     public ArrayList<Cliente> listar(){
