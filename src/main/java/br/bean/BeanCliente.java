@@ -4,6 +4,7 @@ package br.bean;
 import br.dao.CrudClientes;
 import br.model.Cidade;
 import br.model.Cliente;
+import br.rest.RestCidadeClient;
 import java.io.Serializable;
 import java.util.ArrayList;
 import javax.faces.view.ViewScoped;
@@ -17,15 +18,23 @@ public class BeanCliente implements Serializable{
 
     private Cliente cli;
     private CrudClientes cc;
-    
     private int codigo;
     private String nome;
     
     private ArrayList<Cliente> clientes;
     private ArrayList<Cidade> cidades;
     
+    
+    public BeanCliente() {
+        RestCidadeClient rc = new RestCidadeClient();
+        cidades = (ArrayList<Cidade>) rc.getAll();
         
-    public void preencherObj(){
+        cli = new Cliente();
+        cc = new CrudClientes();
+    
+    }
+    
+    public void inserir(){
         
         cc.insereCliente(cli);
         cli = new Cliente();
@@ -43,14 +52,25 @@ public class BeanCliente implements Serializable{
             clientes.remove(cliente);
         }
     }
-    
-    
-    public BeanCliente() {
-        cli = new Cliente();
-        cc = new CrudClientes();
-    
+
+    public ArrayList<Cliente> getClientes() {
+        return clientes;
     }
 
+    public void setClientes(ArrayList<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
+    public ArrayList<Cidade> getCidades() {
+        return cidades;
+    }
+
+    public void setCidades(ArrayList<Cidade> cidades) {
+        this.cidades = cidades;
+    }
+
+    
+    
     public CrudClientes getCc() {
         return cc;
     }

@@ -9,7 +9,7 @@ public class CrudClientes {
     
     public static ArrayList<Cliente> clientes;
 
-    public CrudClientes(){
+    static{
         
         clientes = new ArrayList<Cliente>();
     }

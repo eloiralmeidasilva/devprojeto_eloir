@@ -1,9 +1,12 @@
 
 package br.rest;
 
+import br.model.Cidade;
+import java.util.List;
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.GenericType;
 
 /**
  * Jersey REST client generated for REST resource:CidadeRest [cidade]<br>
@@ -32,10 +35,12 @@ public class RestCidadeClient {
         webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).post(javax.ws.rs.client.Entity.entity(requestEntity, javax.ws.rs.core.MediaType.APPLICATION_JSON));
     }
 
-    public <T> T get(Class<T> responseType, String id) throws ClientErrorException {
-        WebTarget resource = webTarget;
-        resource = resource.path(java.text.MessageFormat.format("{0}", new Object[]{id}));
-        return resource.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    public <T> T get(Class<T> responseType) throws ClientErrorException {
+        return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(responseType);
+    }
+
+     public List<Cidade> getAll() throws ClientErrorException {
+        return webTarget.request(javax.ws.rs.core.MediaType.APPLICATION_JSON).get(new GenericType<List<Cidade>>() {});
     }
 
     public void close() {

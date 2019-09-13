@@ -12,7 +12,12 @@ public class Cliente implements java.io.Serializable{
     private String nome;
     private Cidade cidade;
     
+    public Cliente(){
+        codigo = 0;
+        nome = "";
+        cidade = new Cidade();
     
+    }
 
     public int getCodigo() {
         return codigo;
