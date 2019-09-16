@@ -24,12 +24,18 @@
         </h:form>
         <hr/>
         <h:form>
-            <h:dataTable value="#{beanCliente.listar()}" var="cli">
+            <h:dataTable value="#{beanCliente.clientes}" var="cli">
                 <h:column>
                     <h:outputText value="#{cli.codigo}"/>
                 </h:column>
                 <h:column>
                     <h:outputText value="#{cli.nome}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton action="#{beanCliente.editar(cli.codigo)}" value="Editar" />
+                </h:column>
+                <h:column>
+                    <h:commandButton action="#{beanCliente.deletar(cli.codigo)}" value="Excluir" />
                 </h:column>
             </h:dataTable>
 

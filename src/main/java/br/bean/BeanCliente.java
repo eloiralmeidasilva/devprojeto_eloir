@@ -1,4 +1,3 @@
-
 package br.bean;
 
 import br.dao.CrudClientes;
@@ -7,50 +6,69 @@ import br.model.Cliente;
 import br.rest.RestCidadeClient;
 import java.io.Serializable;
 import java.util.ArrayList;
+import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 //import javax.faces.view.ViewScoped;
 
-
 @Named(value = "beanCliente")
 @ViewScoped
-public class BeanCliente implements Serializable{
+public class BeanCliente implements Serializable {
 
     private Cliente cli;
     private CrudClientes cc;
     private int codigo;
     private String nome;
-    
+
     private ArrayList<Cliente> clientes;
     private ArrayList<Cidade> cidades;
-    
-    
-    public BeanCliente() {
+
+    @PostConstruct
+    public void BeanClienteInit() {
         RestCidadeClient rc = new RestCidadeClient();
-        cidades = (ArrayList<Cidade>) rc.getAll();
-        
         cli = new Cliente();
         cc = new CrudClientes();
-    
+        cidades = (ArrayList<Cidade>) rc.getAll();
+        clientes = new ArrayList<Cliente>();
     }
-    
-    public void inserir(){
-        
+
+    public void inserir() {
+
         cc.insereCliente(cli);
         cli = new Cliente();
         listar();
     }
-    
-    public ArrayList<Cliente> listar(){
-        
-        return cc.listar();
+
+    public void listar() {
+
+        clientes = cc.listar();
     }
-    
-    public void deletar(Cliente cliente){
-        for(Cliente cli : clientes){
-            cc.delete(cliente.getCodigo());
-            clientes.remove(cliente);
+
+    public void deletar(int id) {
+
+        for (Cliente cli : clientes) {
+            if (cli.getCodigo() == id) {
+                cc.delete(cli.getCodigo());
+                listar();
+                break;
+            }
         }
+    }
+
+    public void editar(int id) {
+        for (Cliente cli : clientes) {
+            if (cli.getCodigo() == id) {
+                cli.setCodigo(this.cli.getCodigo());
+                cli.setNome(this.cli.getNome());
+                cli.setCidade(this.cli.getCidade());
+
+                cc.editar(cli);
+                cli = new Cliente();
+                listar();
+
+            }
+        }
+
     }
 
     public ArrayList<Cliente> getClientes() {
@@ -69,8 +87,6 @@ public class BeanCliente implements Serializable{
         this.cidades = cidades;
     }
 
-    
-    
     public CrudClientes getCc() {
         return cc;
     }
@@ -79,8 +95,6 @@ public class BeanCliente implements Serializable{
         this.cc = cc;
     }
 
-    
-    
     public Cliente getCli() {
         return cli;
     }
@@ -89,8 +103,6 @@ public class BeanCliente implements Serializable{
         this.cli = cli;
     }
 
-    
-    
     public int getCodigo() {
         return codigo;
     }
@@ -106,5 +118,5 @@ public class BeanCliente implements Serializable{
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
 }

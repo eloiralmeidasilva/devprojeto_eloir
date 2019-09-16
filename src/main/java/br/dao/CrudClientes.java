@@ -21,8 +21,8 @@ public class CrudClientes {
     }
     
     public ArrayList<Cliente> listar(){
-    
         return clientes;
+    
     }
 
     public void editar(Cliente cliente){
