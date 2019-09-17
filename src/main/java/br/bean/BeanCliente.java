@@ -19,6 +19,7 @@ public class BeanCliente implements Serializable {
     private CrudClientes cc;
     private int codigo;
     private String nome;
+    private int codCidade;
 
     private ArrayList<Cliente> clientes;
     private ArrayList<Cidade> cidades;
@@ -33,10 +34,16 @@ public class BeanCliente implements Serializable {
     }
 
     public void inserir() {
-
+        
+        for (Cidade cid : cidades) {
+            if (cid.getCodigo() == codCidade) {
+                cli.setCidade(cid);
+                break;
+            }
+        }
         cc.insereCliente(cli);
-        cli = new Cliente();
         listar();
+        cli = new Cliente();
     }
 
     public void listar() {
@@ -63,8 +70,8 @@ public class BeanCliente implements Serializable {
                 cli.setCidade(this.cli.getCidade());
 
                 cc.editar(cli);
-                cli = new Cliente();
                 listar();
+                cli = new Cliente();
 
             }
         }
@@ -75,6 +82,16 @@ public class BeanCliente implements Serializable {
         return clientes;
     }
 
+    public int getCodCidade() {
+        return codCidade;
+    }
+
+    public void setCodCidade(int codCidade) {
+        this.codCidade = codCidade;
+    }
+
+    
+    
     public void setClientes(ArrayList<Cliente> clientes) {
         this.clientes = clientes;
     }

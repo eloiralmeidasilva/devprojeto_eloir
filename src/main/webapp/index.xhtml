@@ -14,9 +14,10 @@
             Nome:
             <h:inputText value="#{beanCliente.cli.nome}"/>
             Cidades:
-            <h:selectOneMenu value="#{beanCliente.cli.cidade}">
-                <f:selectItems value="#{beanCliente.cidades}" var="c" itemValue="#{c}"
-                               itemLabel="#{c.nome}">
+            <h:selectOneMenu value="#{beanCliente.codCidade}">
+                <f:selectItems value="#{beanCliente.cidades}" var="c" itemValue="#{c.codigo}"
+                               itemLabel="#{c.nome}"
+                               >
                 </f:selectItems>
             </h:selectOneMenu>
             
