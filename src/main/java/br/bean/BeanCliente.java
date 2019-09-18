@@ -76,13 +76,7 @@ public class BeanCliente implements Serializable {
             listar();
 
         }
-        //for (Cliente cli : clientes) {
-        //    if (cli.getCodigo() == id) {
-        //        cc.delete(cli.getCodigo());
-        //        listar();
-        //        break;
-        //   }
-        //}
+
     }
 
     public void editar(Cliente client) {
@@ -90,16 +84,7 @@ public class BeanCliente implements Serializable {
         cliEdit = new Cliente();
         cliEdit = client;
         cli = client;
-        /*       for (Cliente client : clientes) {
-            if (client.getCodigo() == id) {
-                client.setCodigo(cli.getCodigo());
-                client.setNome(cli.getNome());
-                client.setCidade(cli.getCidade());
-                cc.editar(client);
-                listar();
-                cli = new Cliente();
-            }
-        }*/
+
     }
 
     public ArrayList<Cliente> getClientes() {
