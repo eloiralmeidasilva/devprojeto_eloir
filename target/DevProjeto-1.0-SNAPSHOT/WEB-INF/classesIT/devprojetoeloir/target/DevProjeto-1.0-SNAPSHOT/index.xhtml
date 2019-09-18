@@ -33,6 +33,9 @@
                     <h:outputText value="#{cli.nome}"/>
                 </h:column>
                 <h:column>
+                    <h:outputText value="#{cli.cidade.nome}"/>
+                </h:column>
+                <h:column>
                     <h:commandButton action="#{beanCliente.editar(cli.codigo)}" value="Editar" />
                 </h:column>
                 <h:column>
