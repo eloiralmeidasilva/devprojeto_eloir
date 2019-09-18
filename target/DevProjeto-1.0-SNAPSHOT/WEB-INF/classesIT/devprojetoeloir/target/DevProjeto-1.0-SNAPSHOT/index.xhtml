@@ -20,8 +20,8 @@
                                >
                 </f:selectItems>
             </h:selectOneMenu>
-            
-            <h:commandButton action="#{beanCliente.inserir()}" value="adicionar" />
+
+            <h:commandButton action="#{beanCliente.inserir()}" value="Salvar" />
         </h:form>
         <hr/>
         <h:form>
@@ -36,10 +36,10 @@
                     <h:outputText value="#{cli.cidade.nome}"/>
                 </h:column>
                 <h:column>
-                    <h:commandButton action="#{beanCliente.editar(cli.codigo)}" value="Editar" />
+                    <h:commandButton action="#{beanCliente.editar(cli)}" value="Editar" />
                 </h:column>
                 <h:column>
-                    <h:commandButton action="#{beanCliente.deletar(cli.codigo)}" value="Excluir" />
+                    <h:commandButton action="#{beanCliente.deletar(cli)}" value="Excluir" />
                 </h:column>
             </h:dataTable>
 

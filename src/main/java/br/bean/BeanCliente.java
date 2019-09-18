@@ -16,6 +16,7 @@ import javax.inject.Named;
 public class BeanCliente implements Serializable {
 
     private Cliente cli;
+    private Cliente cliEdit;
     private CrudClientes cc;
     private int codigo;
     private String nome;
@@ -34,16 +35,33 @@ public class BeanCliente implements Serializable {
     }
 
     public void inserir() {
-        
-        for (Cidade cid : cidades) {
-            if (cid.getCodigo() == codCidade) {
-                cli.setCidade(cid);
-                break;
+
+        if (clientes.contains(cliEdit)) {
+            
+            for (Cidade cid : cidades) {
+                if (cid.getCodigo() == codCidade) {
+                    cli.setCidade(cid);
+                    break;
+                }
             }
+            
+            cc.editar(cli);
+            listar();
+            cliEdit = new Cliente();
+            cli = new Cliente();
+
+        } else {
+             
+            for (Cidade cid : cidades) {
+                if (cid.getCodigo() == codCidade) {
+                    cli.setCidade(cid);
+                    break;
+                }
+            }
+            cc.insereCliente(cli);
+            listar();
+            cli = new Cliente();
         }
-        cc.insereCliente(cli);
-        listar();
-        cli = new Cliente();
     }
 
     public void listar() {
@@ -51,31 +69,37 @@ public class BeanCliente implements Serializable {
         clientes = cc.listar();
     }
 
-    public void deletar(int id) {
+    public void deletar(Cliente cliente) {
 
-        for (Cliente cli : clientes) {
-            if (cli.getCodigo() == id) {
-                cc.delete(cli.getCodigo());
-                listar();
-                break;
-            }
+        if (clientes.contains(cliente)) {
+            cc.delete(cliente.getCodigo());
+            listar();
+
         }
+        //for (Cliente cli : clientes) {
+        //    if (cli.getCodigo() == id) {
+        //        cc.delete(cli.getCodigo());
+        //        listar();
+        //        break;
+        //   }
+        //}
     }
 
-    public void editar(int id) {
-        for (Cliente cli : clientes) {
-            if (cli.getCodigo() == id) {
-                cli.setCodigo(this.cli.getCodigo());
-                cli.setNome(this.cli.getNome());
-                cli.setCidade(this.cli.getCidade());
+    public void editar(Cliente client) {
 
-                cc.editar(cli);
+        cliEdit = new Cliente();
+        cliEdit = client;
+        cli = client;
+        /*       for (Cliente client : clientes) {
+            if (client.getCodigo() == id) {
+                client.setCodigo(cli.getCodigo());
+                client.setNome(cli.getNome());
+                client.setCidade(cli.getCidade());
+                cc.editar(client);
                 listar();
                 cli = new Cliente();
-
             }
-        }
-
+        }*/
     }
 
     public ArrayList<Cliente> getClientes() {
@@ -90,8 +114,14 @@ public class BeanCliente implements Serializable {
         this.codCidade = codCidade;
     }
 
-    
-    
+    public Cliente getCliEdit() {
+        return cliEdit;
+    }
+
+    public void setCliEdit(Cliente cliEdit) {
+        this.cliEdit = cliEdit;
+    }
+
     public void setClientes(ArrayList<Cliente> clientes) {
         this.clientes = clientes;
     }
